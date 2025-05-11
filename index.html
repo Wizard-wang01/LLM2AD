@@ -14,7 +14,6 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-
   <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
   <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
@@ -23,7 +22,6 @@
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
   <title> Demo website for CoRL2025
   </title>
@@ -43,10 +41,14 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <style>
+    .section.hero.is-light {
+      background-color: white;
+    }
+  </style>
 </head>
 
 <body>
-
 
   <section class="hero">
     <div class="hero-body">
@@ -135,60 +137,6 @@
     </div>
   </section>
 
-
-  <!-- Teaser video with 6 videos in 2 rows, each row having 3 videos -->
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <h2 class="title is-3 has-text-centered">Traffic flow demonstrations</h2>
-        <div class="columns is-multiline">
-          <!-- Video 1 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree1" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo1.mp4" type="video/mp4">
-            </video>
-          </div>
-          <!-- Video 2 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree2" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo2.mp4" type="video/mp4">
-            </video>
-          </div>
-          <!-- Video 3 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree3" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo3.mp4" type="video/mp4">
-            </video>
-          </div>
-          <!-- Video 4 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree4" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo4.mp4" type="video/mp4">
-            </video>
-          </div>
-          <!-- Video 5 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree5" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo5.mp4" type="video/mp4">
-            </video>
-          </div>
-          <!-- Video 6 -->
-          <div class="column is-one-third">
-            <video poster="" id="tree6" autoplay controls muted loop width="100%">
-              <source src="static/videos/demo6.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <h2 class="subtitle has-text-centered">
-          These cases demonstrate the strong performance of our model in simulating traffic flow tasks. In the demo, all
-          agent trajectories are scene-consistent and are obtained from a single inference.
-        </h2>
-      </div>
-    </div>
-  </section>
-  <!-- End teaser video -->
-
-
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
@@ -218,6 +166,246 @@
   </section>
   <!-- End paper abstract -->
 
+  <!-- Motivation and Method -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Motivation and Method</h2>
+
+          <!-- Motivation -->
+          <div class="content has-text-justified">
+            <div class="has-text-centered" style="margin-bottom: 20px;">
+              <img src="static/images/framework2.png" alt="LLM to AD Pipeline Comparison"
+                style="max-width: 100%; height: auto;">
+            </div>
+            <p>
+              As illustrated in the above figure, the technical pipeline of autonomous driving motion generation
+              exhibits a notable resemblance to that of large language models (LLMs). This observation naturally prompts
+              the question: which modules, proven effective in LLMs, can be directly transferred to motion generation
+              for autonomous driving, and which ones necessitate domain-specific adaptation? In this work, we conduct a
+              systematic investigation of these five core components. Our key finding is that, despite differences in
+              application domains, several technical modules are transferable between large language models (LLMs) and
+              motion generation tasks.
+            </p>
+          </div>
+
+          <!-- Method -->
+          <div class="content has-text-justified"
+            style="margin-top: 40px; background-color: #f5f5f5; padding: 30px; border-radius: 8px;">
+            <div class="has-text-centered" style="margin: 20px 0 10px 0;">
+              <img src="static/images/motion_generator.png" alt="Motion Generator Architecture"
+                style="max-width: 100%; height: auto;">
+            </div>
+            <p>
+              We design a GPT-like trajectory generation model that predicts the next motion token in an autoregressive
+              manner and iteratively constructs complete trajectories. To maintain awareness of the map and surrounding
+              agents throughout the generation process, our model employs multiple attention mechanisms during
+              inference. Specifically, we perform:<br>
+              (1) self-attention over each agent's motion tokens across different time steps;<br>
+              (2) self-attention between different agents at the same time step;<br>
+              (3) cross-attention over the static map context; and <br>
+              (4) cross-attention over non-predicted agents that are excluded from the GPT input during rollout.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Motivation and Method -->
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="title is-3 has-text-centered">More Demonstrations</h2>
+
+        <!-- Scenario 1: Parking -->
+        <div class="scenario" style="margin-bottom: 40px;">
+          <h3 class="subtitle has-text-centered">Scenario 1: Parking Maneuvers</h3>
+          <div class="columns is-multiline">
+            <!-- Video 1 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking1" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/d3de4f9672635fd.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 2 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking2" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/a8c2bfa46d9e6c4.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 3 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking3" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/393de3ed583666b6.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 4 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking4" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/3e439a20a518ad2c.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 5 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking5" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/6bd1089cf048cae4.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 6 -->
+            <div class="column is-one-third">
+              <video poster="" id="parking6" autoplay controls muted loop width="100%">
+                <source src="static/images/parking/748c59e4282991d4.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-centered" style="margin-top: 20px;">This scenario demonstrates our model's capability in
+            handling complex parking maneuvers, including negotiating tight encounters in parking lots, vehicle exiting
+            and entering parking spaces, precise control in narrow lanes, and effective collision avoidance.</p>
+        </div>
+
+        <!-- Scenario 2: Interaction -->
+        <div class="scenario" style="margin-bottom: 40px;">
+          <h3 class="subtitle has-text-centered">Scenario 2: Multi-Agent Interactions</h3>
+          <div class="columns is-multiline">
+            <!-- Video 1 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction1" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/9b9158fe10ee8420.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 2 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction2" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/24642c69a997f4db.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 3 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction3" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/52f5d53cc7aeb791.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 4 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction4" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/66d2f8859f26c401.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 5 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction5" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/7d040037cd4d968e.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 6 -->
+            <div class="column is-one-third">
+              <video poster="" id="interaction6" autoplay controls muted loop width="100%">
+                <source src="static/images/interaction/7d5806a10b5f48b3.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-centered" style="margin-top: 20px;">This scenario showcases our model's ability to handle
+            complex interactions between multiple agents, including cooperative driving, negotiation in intersections,
+            and maintaining safe distances in dense traffic.</p>
+        </div>
+
+        <!-- Scenario 3: Lane Change -->
+        <div class="scenario" style="margin-bottom: 40px;">
+          <h3 class="subtitle has-text-centered">Scenario 3: Lane Change Maneuvers</h3>
+          <div class="columns is-multiline">
+            <!-- Video 1 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange1" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/28db62d34c9c9064.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 2 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange2" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/91ae85924f2177b3.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 3 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange3" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/dc00dc6dbcdf9802.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 4 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange4" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/70594ba047900394.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 5 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange5" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/8d1a233b4b703728.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 6 -->
+            <div class="column is-one-third">
+              <video poster="" id="lanechange6" autoplay controls muted loop width="100%">
+                <source src="static/images/change_lane/67319f7409ec6796.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-centered" style="margin-top: 20px;">This scenario showcases the model’s accurate
+            representation and prediction of complex lane-changing behaviors, including merging into traffic, overtaking
+            slower vehicles, handling overtaking-specific maneuvers, and responding to cut-in scenarios.</p>
+        </div>
+
+        <!-- Scenario 4: Narrow Road -->
+        <div class="scenario">
+          <h3 class="subtitle has-text-centered">Scenario 4: Narrow Road Navigation</h3>
+          <div class="columns is-multiline">
+            <!-- Video 1 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow1" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/f824473349c72041.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 2 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow2" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/3a5461ed44efbee8.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 3 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow3" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/7bbc68a082ff5d21.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 4 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow4" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/b6c121ee6748be2e.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 5 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow5" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/ebb489f4159661e0.mp4" type="video/mp4">
+              </video>
+            </div>
+            <!-- Video 6 -->
+            <div class="column is-one-third">
+              <video poster="" id="narrow6" autoplay controls muted loop width="100%">
+                <source src="static/images/narraw/e9653159c09f5c72.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-centered" style="margin-top: 20px;">This scenario highlights our model's ability to
+            navigate through narrow roads and tight spaces, demonstrating precise control and strong spatial awareness
+            in complex urban environments. The model successfully handles challenging maneuvers such as navigating
+            around parked vehicles, entering confined road segments, and threading between closely spaced cars.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Image carousel -->
   <!-- <section class="hero is-small">
@@ -258,7 +446,6 @@
 </section> -->
   <!-- End image carousel -->
 
-
   <!-- Youtube video -->
   <!-- <section class="hero is-small is-light">
   <div class="hero-body">
@@ -276,7 +463,6 @@
   </div>
 </section> -->
   <!-- End youtube video -->
-
 
   <!-- Video carousel -->
   <!-- <section class="hero is-small">
@@ -311,7 +497,6 @@
 </section> -->
   <!-- End video carousel -->
 
-
   <!-- Paper poster -->
   <!-- <section class="hero is-small is-light">
   <div class="hero-body">
@@ -326,7 +511,6 @@
   </section> -->
   <!--End paper poster -->
 
-
   <!--BibTex citation -->
   <!-- <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
@@ -336,7 +520,6 @@
 </section> -->
   <!--End BibTex citation -->
 
-
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
@@ -345,12 +528,12 @@
 
             <p>
               This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
-                target="_blank">Academic Project Page Template</a> which was adopted from the <a
-                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-              You are free to borrow the source code of this website, we just ask that you link back to this page in the
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              <!-- You are free to borrow the source code of this website, we just ask that you link back to this page in the
               footer. <br> This website is licensed under a <a rel="license"
                 href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-                Commons Attribution-ShareAlike 4.0 International License</a>.
+                Commons Attribution-ShareAlike 4.0 International License</a>. -->
             </p>
 
           </div>
